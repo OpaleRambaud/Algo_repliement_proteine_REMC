@@ -105,10 +105,110 @@ class Residue:
 			print("redo step")
 			
 		
+	def crankshaft_move(self, neighbour_list, protein_coordinates):
+	#take list from self-3:self+3
+		if neighbour_list[2].coordinates[0] != neighbour_list[4].coordinates[0] and neighbour_list[2].coordinates[1] != neighbour_list[4].coordinates[1]:
+			if self.coordinates[0] != neighbour_list[5].coordinates[0] and self.coordinates[1] != neighbour_list[5].coordinates[1]:
+				if neighbour_list[1].coordinates[0] == neighbour_list[2].coordinates[0] == neighbour_list[5].coordinates[0] == neighbour_list[-1].coordinates[0]:
+					if self.coordinates[0] < neighbour_list[2].coordinates[0]:
+						if (tuple([self.coordinates[0] + 2, self.coordinates[1]]) not in protein_coordinates and 
+							tuple([neighbour_list[4].coordinates[0] + 2, neighbour_list[4].coordinates[1]]) not in protein_coordinates):
+							protein_coordinates.remove(tuple(self.coordinates))
+							protein_coordinates.remove(tuple(neighbour_list[4].coordinates))
+							self.coordinates = [self.coordinates[0] + 2, self.coordinates[1]]
+							neighbour_list[4].coordinates = [neighbour_list[4].coordinates[0] + 2, neighbour_list[4].coordinates[1]]
+							protein_coordinates.add(tuple(self.coordinates))
+							protein_coordinates.add(tuple(neighbour_list[4].coordinates))
+						else:
+							print("redo step")
+					elif self.coordinates[0] > neighbour_list[2].coordinates[0]:
+						if (tuple([self.coordinates[0] - 2, self.coordinates[1]]) not in protein_coordinates and 
+							tuple([neighbour_list[4].coordinates[0] - 2, neighbour_list[4].coordinates[1]]) not in protein_coordinates):
+							protein_coordinates.remove(tuple(self.coordinates))
+							protein_coordinates.remove(tuple(neighbour_list[4].coordinates))
+							self.coordinates = [self.coordinates[0] - 2, self.coordinates[1]]
+							neighbour_list[4].coordinates = [neighbour_list[4].coordinates[0] - 2, neighbour_list[4].coordinates[1]]
+							protein_coordinates.add(tuple(self.coordinates))
+							protein_coordinates.add(tuple(neighbour_list[4].coordinates))
+						else:
+							print("redo step")
+				elif neighbour_list[1].coordinates[1] == neighbour_list[2].coordinates[1] == neighbour_list[5].coordinates[1] == neighbour_list[-1].coordinates[1]:
+					if self.coordinates[1] < neighbour_list[2].coordinates[1]:
+						if (tuple([self.coordinates[0], self.coordinates[1] + 2]) not in protein_coordinates and 
+							tuple([neighbour_list[4].coordinates[0], neighbour_list[4].coordinates[1] + 2]) not in protein_coordinates):
+							protein_coordinates.remove(tuple(self.coordinates))
+							protein_coordinates.remove(tuple(neighbour_list[4].coordinates))
+							self.coordinates = [self.coordinates[0], self.coordinates[1] + 2]
+							neighbour_list[4].coordinates = [neighbour_list[4].coordinates[0], neighbour_list[4].coordinates[1] + 2]
+							protein_coordinates.add(tuple(self.coordinates))
+							protein_coordinates.add(tuple(neighbour_list[4].coordinates))
+						else:
+							print("redo step")
+					elif self.coordinates[1] > neighbour_list[2].coordinates[1]:
+						if (tuple([self.coordinates[0], self.coordinates[1] - 2]) not in protein_coordinates and 
+							tuple([neighbour_list[4].coordinates[0], neighbour_list[4].coordinates[1] - 2]) not in protein_coordinates):
+							protein_coordinates.remove(tuple(self.coordinates))
+							protein_coordinates.remove(tuple(neighbour_list[4].coordinates))
+							self.coordinates = [self.coordinates[0], self.coordinates[1] - 2]
+							neighbour_list[4].coordinates = [neighbour_list[4].coordinates[0], neighbour_list[4].coordinates[1] - 2]
+							protein_coordinates.add(tuple(self.coordinates))
+							protein_coordinates.add(tuple(neighbour_list[4].coordinates))
+						else:
+							print("redo step")
+				elif neighbour_list[0].coordinates[0] == neighbour_list[0].coordinates[0] == neighbour_list[4].coordinates[0] == neighbour_list[5].coordinates[0]:
+					if self.coordinates[0] < neighbour_list[4].coordinates[0]:
+						if (tuple([self.coordinates[0] + 2, self.coordinates[1]]) not in protein_coordinates and 
+							tuple([neighbour_list[2].coordinates[0] + 2, neighbour_list[2].coordinates[1]]) not in protein_coordinates):
+							protein_coordinates.remove(tuple(self.coordinates))
+							protein_coordinates.remove(tuple(neighbour_list[2].coordinates))
+							self.coordinates = [self.coordinates[0] + 2, self.coordinates[1]]
+							neighbour_list[2].coordinates = [neighbour_list[2].coordinates[0] + 2, neighbour_list[2].coordinates[1]]
+							protein_coordinates.add(tuple(self.coordinates))
+							protein_coordinates.add(tuple(neighbour_list[2].coordinates))
+						else:
+							print("redo step")
+					elif self.coordinates[0] > neighbour_list[4].coordinates[0]:
+						if (tuple([self.coordinates[0] - 2, self.coordinates[1]]) not in protein_coordinates and 
+							tuple([neighbour_list[2].coordinates[0] - 2, neighbour_list[2].coordinates[1]]) not in protein_coordinates):
+							protein_coordinates.remove(tuple(self.coordinates))
+							protein_coordinates.remove(tuple(neighbour_list[2].coordinates))
+							self.coordinates = [self.coordinates[0] - 2, self.coordinates[1]]
+							neighbour_list[2].coordinates = [neighbour_list[2].coordinates[0] - 2, neighbour_list[2].coordinates[1]]
+							protein_coordinates.add(tuple(self.coordinates))
+							protein_coordinates.add(tuple(neighbour_list[2].coordinates))
+						else:
+							print("redo step")
+				elif neighbour_list[0].coordinates[1] == neighbour_list[0].coordinates[1] == neighbour_list[4].coordinates[1] == neighbour_list[5].coordinates[1]:
+					if self.coordinates[1] < neighbour_list[4].coordinates[1]:
+						if (tuple([self.coordinates[0], self.coordinates[1] + 2]) not in protein_coordinates and 
+							tuple([neighbour_list[2].coordinates[0], neighbour_list[2].coordinates[1] + 2]) not in protein_coordinates):
+							protein_coordinates.remove(tuple(self.coordinates))
+							protein_coordinates.remove(tuple(neighbour_list[2].coordinates))
+							self.coordinates = [self.coordinates[0], self.coordinates[1] + 2]
+							neighbour_list[2].coordinates = [neighbour_list[2].coordinates[0], neighbour_list[2].coordinates[1] + 2]
+							protein_coordinates.add(tuple(self.coordinates))
+							protein_coordinates.add(tuple(neighbour_list[2].coordinates))
+						else:
+							print("redo step")
+					elif self.coordinates[1] > neighbour_list[4].coordinates[1]:
+						if (tuple([self.coordinates[0], self.coordinates[1] - 2]) not in protein_coordinates and 
+							tuple([neighbour_list[2].coordinates[0], neighbour_list[2].coordinates[1] - 2]) not in protein_coordinates):
+							protein_coordinates.remove(tuple(self.coordinates))
+							protein_coordinates.remove(tuple(neighbour_list[2].coordinates))
+							self.coordinates = [self.coordinates[0], self.coordinates[1] - 2]
+							neighbour_list[2].coordinates = [neighbour_list[2].coordinates[0], neighbour_list[2].coordinates[1] - 2]
+							protein_coordinates.add(tuple(self.coordinates))
+							protein_coordinates.add(tuple(neighbour_list[2].coordinates))
+						else:
+							print("redo step")
+				else:
+					print("redo step")
+					
+		
 			
 if __name__ == "__main__":
 	
-	seq, coordinates = get_seq("../data/HP2.txt")
+	seq, coordinates = get_seq("../data/HP3.txt")
 	
 	# creating list        
 	protein = []
@@ -122,11 +222,21 @@ if __name__ == "__main__":
 	for res in protein:
 		protein_coordinates.add(tuple(res.coordinates))
 
-	"""
 	print(protein[2].coordinates)
+	print(protein[3].coordinates)
+	print(protein[4].coordinates)
 	print("\n")
 	print(protein_coordinates)
 	
+	protein[3].crankshaft_move(protein, protein_coordinates)
+	print("\n")
+	print(protein[2].coordinates)
+	print(protein[3].coordinates)
+	print(protein[4].coordinates)
+	print("\n")
+	print(protein_coordinates)
+	
+	"""
 	protein[-1].end_move(protein[-2], protein_coordinates)
 	print("\n")
 	print(protein[-1].coordinates)
