@@ -1,5 +1,38 @@
 import random as rd
-#import copy
+import sys
+import argparse
+
+
+def myargs():
+	parser = argparse.ArgumentParser()												
+	parser.add_argument('--input_file', required = True, help = 
+						'location of HP_file of the protein path')
+	parser.add_argument('--steps', required = False, help = 
+						'number of steps', default=10000,
+					   type=int)
+	parser.add_argument('--output_pdb', required = True, help = 
+						'name of the pdb in output')				   
+  
+	args = parser.parse_args()
+	return args
+
+	
+	
+def argdet():
+	if len(sys.argv) < 5:
+		print('Check number of input argument!')
+		exit()
+	elif len(sys.argv) == 5:
+		print('Run with default number of steps: 10000')
+		args = myargs()
+		return args
+	elif len(sys.argv) == 7:
+		print('Run with number of steps you choose')
+		args = myargs()
+		return args
+		print(args)
+
+
 
 def get_seq(input_file):
 	coordinates = []
@@ -273,10 +306,16 @@ class Residue:
 		"""
 			
 if __name__ == "__main__":
+
+
+	args = argdet()
+	input_file = args.input_file
+	stp = args.steps
+	output_pdb = args.output_pdb
 	
-	seq, coordinates = get_seq("../data/HP3.txt")
+	seq, coordinates = get_seq(input_file)
 	
-	# creating list        
+	# creating list		   
 	protein = []
   
 	# appending instances to list
