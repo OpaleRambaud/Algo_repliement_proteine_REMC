@@ -1,4 +1,5 @@
 import random as rd
+#import copy
 
 def get_seq(input_file):
 	coordinates = []
@@ -203,8 +204,73 @@ class Residue:
 							print("redo step")
 				else:
 					print("redo step")
-					
-		
+	"""
+	def pull_move(self, residue_number, neighbour_list, protein_coordinates):
+		available_mvt = []
+		if (neighbour_list[residue_number - 1].coordinates[0] != neighbour_list[residue_number + 1].coordinates[0] and
+			neighbour_list[residue_number + 1].coordinates[1] != neighbour_list[residue_number - 1].coordinates[1]):
+			if tuple([neighbour_list[residue_number - 1].coordinates[0], neighbour_list[residue_number + 1].coordinates[1]]) not in protein_coordinates:
+				protein_coordinates.remove(tuple(self.coordinates))
+				self.coordinates = [neighbour_list[residue_number - 1].coordinates[0], neighbour_list[residue_number + 1].coordinates[1]]
+				protein_coordinates.add(tuple(self.coordinates))
+			elif tuple([neighbour_list[residue_number - 1].coordinates[1], neighbour_list[residue_number + 1].coordinates[0]]) not in protein_coordinates:
+				protein_coordinates.remove(tuple(self.coordinates))
+				self.coordinates = [neighbour_list[residue_number - 1].coordinates[1], neighbour_list[residue_number + 1].coordinates[0]]
+				protein_coordinates.add(tuple(self.coordinates))
+			else:
+				print("redo step")
+		elif neighbour_list[residue_number - 1].coordinates[0] == neighbour_list[residue_number + 1].coordinates[0] == self.coordinates[0]:
+			top_left = [neighbour_list[residue_number - 1].coordinates[0] - 1, neighbour_list[residue_number - 1].coordinates[1]]
+			top_right = [neighbour_list[residue_number - 1].coordinates[0] + 1, neighbour_list[residue_number - 1].coordinates[1]]
+			bottom_left = [neighbour_list[residue_number + 1].coordinates[0] - 1, neighbour_list[residue_number + 1].coordinates[1]]
+			bottom_right = [neighbour_list[residue_number + 1].coordinates[0] + 1, neighbour_list[residue_number + 1].coordinates[1]]
+			if tuple(top_left) not in protein_coordinates and tuple([self.coordinates[0] - 1, self.coordinates[1]]) not present in protein_coordinates:
+				available_mvt.append(top_left)
+			if tuple(top_right) not in protein_coordinates and tuple([self.coordinates[0] + 1, self.coordinates[1]]) not present in protein_coordinates:
+				available_mvt.append(top_right)
+			if tuple(bottom_left) not in protein_coordinates and tuple([self.coordinates[0] - 1, self.coordinates[1]]) not present in protein_coordinates:
+				available_mvt.append(bottom_left)
+			if tuple(bottom_right) not in protein_coordinates and tuple([self.coordinates[0] + 1, self.coordinates[1]]) not present in protein_coordinates:
+				available_mvt.append(bottom_right)
+			if len(mvt) > 1:
+				mvt = rd.choice(avaiable_mvt)
+			elif len(mvt) == 1:
+				mvt = available_mvt[0]
+			else:
+				print("redo step")
+			if mvt == top_left or mvt == top_right
+				protein_coordinates.remove(tuple(self.coordinates))
+				protein_coordinates.remove(tuple([neighbour_list[residue_number + 1].coordinates]))
+				prv_coordinates = copy.deepcopy(self.coordinates)
+				self.coordinates = mvt
+				neighbour_list[residue_number + 1].coordinates = [self.coordinates[0], self.coordinates[1] - 1]
+				protein_coordinates.add(tuple(self.coordinates))	
+				protein_coordinates.add(tuple(neighbour_list[residue_number + 1].coordinates))			
+				if mvt == top_left:
+					if ([neighbour_list[residue_number + 2].coordinates ==  [neighbour_list[residue_number + 1].coordinates[0], neighbour_list[residue_number +
+						1].coordinates[1] - 1] or [neighbour_list[residue_number + 2].coordinates ==  [neighbour_list[residue_number + 1].coordinates[0],
+						neighbour_list[residue_number + 1].coordinates[1] + 1]):
+						
+												
+					protein_coordinates.remove(tuple([neighbour_list[residue_number + 2].coordinates]))
+					neighbour_list[residue_number + 2].coordinates = [neighbour_list[residue_number + 1].coordinates[0], neighbour_list[residue_number + 1].coordinates[1] - 1)]
+					protein_coordinates.add(tuple(neighbour_list[residue_number + 2].coordinates))
+
+				for n, res in enumerate(neighbour_list[residue_number + 2:-1]):
+					if tuple([neighbour_list[residue_number + 1 + n].coordinates[0], neighbour_list[residue_number + 1].coordinates[1] - 1) in protein_coordinates:
+						break
+					else:
+						
+			elif mvt == bottom_left or mvt == bottom_right:
+				protein_coordinates.remove(tuple(self.coordinates))
+				protein_coordinates.remove(tuple([neighbour_list[residue_number - 1].coordinates]))
+				self.coordinates = mvt
+				neighbour_list[residue_number - 1].coordinates = [self.coordinates[0], self.coordinates[1] + 1]
+				protein_coordinates.add(tuple(self.coordinates))	
+				protein_coordinates.add(tuple(neighbour_list[residue_number - 1].coordinates))
+								
+		elif neighbour_list[residue_number - 1].coordinates[1] == neighbour_list[residue_number + 1].coordinates[1] == self.coordinates[1]:
+		"""
 			
 if __name__ == "__main__":
 	
