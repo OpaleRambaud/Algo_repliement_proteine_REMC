@@ -2,6 +2,7 @@ import random as rd
 import sys
 import argparse
 import residue
+import MC
 
 
 def myargs():
@@ -61,26 +62,35 @@ if __name__ == "__main__":
 	stp = args.steps
 	output_pdb = args.output_pdb
 	"""	
-	seq, coordinates = get_seq("../data/HP2.txt")
+	seq, coordinates = get_seq("../data/HP1.txt")
 	
 	# creating list		   
 	protein = []
   
 	# appending instances to list
 	for n, res in enumerate(seq):
-		protein.append(residue.Residue("residue" + str((n+1)), res, coordinates[n]))
+		protein.append(residue.Residue("residue" + str((n+1)), res, coordinates[n], n))
 	
 	# Creating set for all coordinates
 	protein_coordinates = set()
 	for res in protein:
 		protein_coordinates.add(tuple(res.coordinates))
 
+	for res in protein:
+		print(res.coordinates)
+	print("\n")
+	MC.MCsearch(1, protein, protein_coordinates)
+	for res in protein:
+		print(res.coordinates)
+	print("\n")
+
+	"""
 	print(protein[2].coordinates)
 	print(protein[3].coordinates)
 	print(protein[4].coordinates)
 	print("\n")
 	print(protein_coordinates)
-	"""
+	
 	protein[3].crankshaft_move(protein, protein_coordinates)
 	print("\n")
 	print(protein[2].coordinates)
@@ -95,14 +105,14 @@ if __name__ == "__main__":
 	print(protein[-1].coordinates)
 	print("\n")
 	print(protein_coordinates)
-	"""
+	
 	
 	protein[2].corner_move(protein, protein_coordinates, 2)
 	print("\n")
 	print(protein[2].coordinates)
 	print("\n")
 	print(protein_coordinates)
-	
+	"""
 	
 	
 	

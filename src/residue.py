@@ -1,10 +1,11 @@
-import random
+import random as rd
 
 class Residue:
-	def __init__(self, name, polarity, coordinates):
+	def __init__(self, name, polarity, coordinates, number):
 		self.name = name
 		self.polarity = polarity
 		self.coordinates = coordinates
+		self.number = number
 	
 	def end_move(self, neighbour, protein_coordinates):
 		available_mvt = []
@@ -25,16 +26,16 @@ class Residue:
 		self.coordinates = mvt
 		protein_coordinates.add(tuple(self.coordinates))
 	
-	def corner_move(self, neighbour_list, protein_coordinates, residue_number):
-		if (neighbour_list[residue_number - 1].coordinates[0] != neighbour_list[residue_number + 1].coordinates[0] and
-			neighbour_list[residue_number + 1].coordinates[1] != neighbour_list[residue_number - 1].coordinates[1]):
-			if tuple([neighbour_list[residue_number - 1].coordinates[0], neighbour_list[residue_number + 1].coordinates[1]]) not in protein_coordinates:
+	def corner_move(self, neighbour_list, protein_coordinates):
+		if (neighbour_list[self.number - 1].coordinates[0] != neighbour_list[self.number + 1].coordinates[0] and
+			neighbour_list[self.number + 1].coordinates[1] != neighbour_list[self.number - 1].coordinates[1]):
+			if tuple([neighbour_list[self.number - 1].coordinates[0], neighbour_list[self.number + 1].coordinates[1]]) not in protein_coordinates:
 				protein_coordinates.remove(tuple(self.coordinates))
-				self.coordinates = [neighbour_list[residue_number - 1].coordinates[0], neighbour_list[residue_number + 1].coordinates[1]]
+				self.coordinates = [neighbour_list[self.number - 1].coordinates[0], neighbour_list[self.number + 1].coordinates[1]]
 				protein_coordinates.add(tuple(self.coordinates))
-			elif tuple([neighbour_list[residue_number - 1].coordinates[1], neighbour_list[residue_number + 1].coordinates[0]]) not in protein_coordinates:
+			elif tuple([neighbour_list[self.number - 1].coordinates[1], neighbour_list[self.number + 1].coordinates[0]]) not in protein_coordinates:
 				protein_coordinates.remove(tuple(self.coordinates))
-				self.coordinates = [neighbour_list[residue_number - 1].coordinates[1], neighbour_list[residue_number + 1].coordinates[0]]
+				self.coordinates = [neighbour_list[self.number - 1].coordinates[1], neighbour_list[self.number + 1].coordinates[0]]
 				protein_coordinates.add(tuple(self.coordinates))
 			else:
 				print("redo step")
