@@ -54,12 +54,16 @@ python create_res.py --input_file --steps --output_pdb
 with the following arguments:
 
 --input_file : a file containing the HP sequence 
+
 --steps : the number of steps you want (this argument is optional, the default value is 10000)
+
 --output_pdb : the name of the output file in pdb format 
+
+--crankshaft : choose to use the Crankshaft move that is risky because of errors
 
 So, one example of this command is : 
 
-`python create_res --input_file HP1.txt --steps 1000 --output_pdb my_model.pdb`
+`python create_res -i HP1.txt --s 1000 -o my_model.pdb -c`
 
 The ouput is a pdb with a model for every folding. 
 
