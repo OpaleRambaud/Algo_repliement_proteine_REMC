@@ -75,16 +75,18 @@ if __name__ == "__main__":
 	protein_coordinates = set()
 	for res in protein:
 		protein_coordinates.add(tuple(res.coordinates))
-
-	for res in protein:
-		print(res.coordinates)
-	print("\n")
-	MC.MCsearch(1, protein, protein_coordinates)
-	for res in protein:
-		print(res.coordinates)
-	print("\n")
-
 	"""
+	for res in protein:
+		print(res.coordinates)
+	print("\n")
+	"""
+	MC.MCsearch(10000, protein, protein_coordinates)
+	"""
+	for res in protein:
+		print(res.coordinates)
+	print("\n")
+
+	
 	print(protein[2].coordinates)
 	print(protein[3].coordinates)
 	print(protein[4].coordinates)
