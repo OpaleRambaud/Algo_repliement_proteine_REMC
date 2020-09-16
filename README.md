@@ -39,13 +39,18 @@ Pymol 2.3.5
 ## Directories :
 
 
-The data directory contains examples of HP sequences in txt format (3from the article and 2 building by us)
+The data directory contains examples of HP sequences in txt format (3from the article and 2 building by us).
 
-The src directory contains all the source codes 
+The src directory contains all the source codes. 
 
-The docs directory contains the project report in pdf format
+The docs directory contains the project report in pdf format.
+
+You can also find a yamal file to create the optimal environment on your machine to run our scripts.
 
 ## Program :
+
+Please clone the entire github bdefore using scripts.
+
 
 To run the program the following command must be executed: 
 
