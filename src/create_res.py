@@ -62,7 +62,7 @@ if __name__ == "__main__":
 	stp = args.steps
 	output_pdb = args.output_pdb
 	"""	
-	seq, coordinates = get_seq("../data/HP1.txt")
+	seq, coordinates = get_seq("../data/HP3.txt")
 	
 	# creating list		   
 	protein = []
