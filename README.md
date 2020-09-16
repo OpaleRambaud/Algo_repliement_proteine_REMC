@@ -1,6 +1,10 @@
 # FOLDING OF AN HP MODEL OF PROTEIN BY A MONTE CARLO ALGORITHM
 
-Authors : Julien PICHON and Opale RAMBAUD
+Authors : 
+
+Julien PICHON : julien.pichon@cri-paris.org
+
+Opale RAMBAUD : opale.rambaud@gmail.fr
 
 In a context of scholar project for Université de Paris 
 
