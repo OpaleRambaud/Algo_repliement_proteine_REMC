@@ -108,12 +108,13 @@ class Residue:
 				protein_coordinates.add(tuple(self.coordinates))
 		
 	def crankshaft_move(self, neighbour_list, protein_coordinates):
-	"""Movement for U-shaped part of the protein, where we could imagine 2 objects moving to have a reversed U.
+		"""Movement for U-shaped part of the protein, where we could imagine 2 objects moving to have a reversed U.
 	
-	neighbour_list is a list of all objects of the protein.
-	There is an issue with this method, doing sometimes a crankshaft when and where it shouldn't.
-	Method could be factorized with a function taking axis movement, sens of the protein and movement direction as arguments, but didn't had the time.
-	"""
+		neighbour_list is a list of all objects of the protein.
+		There is an issue with this method, doing sometimes a crankshaft when and where it shouldn't.
+		Method could be factorized with a function taking axis movement, sens of the protein and movement direction as arguments, but didn't had the time.
+		"""
+	
 		# Move on x axis.
 		if (neighbour_list[self.number - 2].coordinates[0] == neighbour_list[self.number - 1].coordinates[0] == 
 			neighbour_list[self.number + 2].coordinates[0] == neighbour_list[self.number + 3].coordinates[0]):

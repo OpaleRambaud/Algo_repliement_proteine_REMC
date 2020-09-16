@@ -82,7 +82,7 @@ if __name__ == "__main__":
 	"""
 	TEMPERATURE = 300
 	crankshaft = False
-	MC.MCsearch(10000, protein, protein_coordinates, crankshaft, TEMPERATURE)
+	MC.MCsearch(10, protein, protein_coordinates, crankshaft, TEMPERATURE)
 	"""
 	for res in protein:
 		print(res.coordinates)

@@ -1,14 +1,13 @@
 import random as rd
 import copy
 import math
+import pdb_write
 
 def MCsearch(step, conformation, protein_coordinates, crankshaft, TEMPERATURE):
 	for n, i in enumerate(range(step)):		
 		if n == 0:
-			for aa in conformation:
-				print(aa.coordinates)
-			print("\n")
 			energy = calcul_energy(conformation)
+			pdb_write.pdb_writer(conformation)
 		current_res = rd.choice(conformation)
 		previous_coordinates = copy.deepcopy(protein_coordinates)
 		previous_conformation = copy.deepcopy(conformation)
@@ -40,9 +39,7 @@ def MCsearch(step, conformation, protein_coordinates, crankshaft, TEMPERATURE):
 			continue
 		else:
 			if calcul_energy(conformation) <= energy:
-				print(energy)
 				energy = calcul_energy(conformation)
-				print(energy)
 			else:
 				new_energy = calcul_energy(conformation)
 				prob = rd.uniform(0,1)
@@ -51,9 +48,8 @@ def MCsearch(step, conformation, protein_coordinates, crankshaft, TEMPERATURE):
 				else:
 					conformation = previous_conformation
 					protein_coordinates = previous_coordinates
-		for aa in conformation:
-			print(aa.coordinates)
-		print("\n")
+		pdb_write.pdb_writer(conformation)
+	print("Energy of the last conformation is {}".format(energy))
 
 
 def calcul_energy(conformation):
@@ -77,7 +73,6 @@ def calcul_energy(conformation):
 				neighbour_res2 = conformation[n + 1]
 			neighbour_coordinates = [[res.coordinates[0] + 1, res.coordinates[1]], [res.coordinates[0] - 1,
 				res.coordinates[1]], [res.coordinates[0], res.coordinates[1] + 1], [res.coordinates[0], res.coordinates[1] - 1]]
-			print(neighbour_coordinates)
 			for coordinates in neighbour_coordinates:
 				if n == 0:
 					if tuple(coordinates) in hydrophobic_coordinates and coordinates != neighbour_res2.coordinates:

@@ -1,8 +1,8 @@
-def pdb_writer (protein):
+def pdb_writer(protein):
     num_atom= 1
     num_res= 1
     for res in protein :
-          with open(output_pdb,'a+') as f:            
+          with open("sortie.pdb",'a+') as f:            
              f.write("MODEL")
              f.write("\n")
              f.write("ATOM".ljust(4))
