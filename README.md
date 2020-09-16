@@ -53,7 +53,7 @@ with the following arguments:
 
 So, one example of this command is : 
 
-python create_res --input_file HP1.txt --steps 1000 --output_pdb my_model.pdb 
+`python create_res --input_file HP1.txt --steps 1000 --output_pdb my_model.pdb`
 
 The ouput is a pdb with a model for every folding. 
 
