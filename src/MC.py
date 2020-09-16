@@ -3,11 +3,13 @@ import copy
 import math
 import pdb_write
 
-def MCsearch(step, conformation, protein_coordinates, crankshaft, TEMPERATURE):
+TEMPERATURE = 300
+
+def MCsearch(conformation, protein_coordinates, crankshaft, step, output):
 	for n, i in enumerate(range(step)):		
 		if n == 0:
 			energy = calcul_energy(conformation)
-			pdb_write.pdb_writer(conformation, n + 1)
+			pdb_write.pdb_writer(conformation, n + 1, output)
 		current_res = rd.choice(conformation)
 		previous_coordinates = copy.deepcopy(protein_coordinates)
 		previous_conformation = copy.deepcopy(conformation)
@@ -49,7 +51,7 @@ def MCsearch(step, conformation, protein_coordinates, crankshaft, TEMPERATURE):
 					conformation = previous_conformation
 					protein_coordinates = previous_coordinates
 		if n != 0:
-			pdb_write.pdb_writer(conformation, n + 1)
+			pdb_write.pdb_writer(conformation, n + 1, output)
 	print("Energy of the last conformation is {}".format(energy))
 
 
