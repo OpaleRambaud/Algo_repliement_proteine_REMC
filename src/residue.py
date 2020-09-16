@@ -27,6 +27,7 @@ class Residue:
 			mvt = available_mvt[0]
 		else:
 			mvt = rd.choice(available_mvt)
+		print(tuple(self.coordinates))
 		protein_coordinates.remove(tuple(self.coordinates))
 		self.coordinates = mvt
 		protein_coordinates.add(tuple(self.coordinates))
@@ -46,6 +47,7 @@ class Residue:
 		# Left top movement.
 		elif neighbour1.coordinates[0] < self.coordinates[0] and neighbour2.coordinates[1] > self.coordinates[1]:
 			if tuple([neighbour1.coordinates[0], neighbour2.coordinates[1]]) not in protein_coordinates:
+				print(tuple(self.coordinates))
 				protein_coordinates.remove(tuple(self.coordinates))
 				self.coordinates = [neighbour1.coordinates[0], neighbour2.coordinates[1]]
 				protein_coordinates.add(tuple(self.coordinates))
@@ -62,6 +64,7 @@ class Residue:
 				protein_coordinates.add(tuple(self.coordinates))
 		elif neighbour2.coordinates[0] > self.coordinates[0] and neighbour1.coordinates[1] > self.coordinates[1]:
 			if tuple([neighbour2.coordinates[0], neighbour1.coordinates[1]]) not in protein_coordinates:
+				print(tuple(self.coordinates))
 				protein_coordinates.remove(tuple(self.coordinates))
 				self.coordinates = [neighbour2.coordinates[0], neighbour1.coordinates[1]]
 				protein_coordinates.add(tuple(self.coordinates))
@@ -95,7 +98,7 @@ class Residue:
 					neighbour_list[self.number + 1].coordinates = [neighbour_list[self.number + 1].coordinates[0] + 2, neighbour_list[self.number + 1].coordinates[1]]
 					protein_coordinates.add(tuple(self.coordinates))
 					protein_coordinates.add(tuple(neighbour_list[self.number + 1].coordinates))
-			else:
+			elif self.coordinates[0] > neighbour_list[self.number - 1].coordinates[0]:
 				# Left forward move.
 				if (tuple([self.coordinates[0] - 2, self.coordinates[1]]) not in protein_coordinates and 
 					tuple([neighbour_list[self.number + 1].coordinates[0] - 2, neighbour_list[self.number + 1].coordinates[1]]) not in protein_coordinates):
@@ -118,7 +121,7 @@ class Residue:
 					protein_coordinates.add(tuple(self.coordinates))
 					protein_coordinates.add(tuple(neighbour_list[self.number - 1].coordinates))
 			# Left reverse move.
-			else:
+			elif self.coordinates[0] > neighbour_list[self.number - 1].coordinates[0]:
 				if (tuple([self.coordinates[0] - 2, self.coordinates[1]]) not in protein_coordinates and 
 					tuple([neighbour_list[self.number - 1].coordinates[0] - 2, neighbour_list[self.number - 1].coordinates[1]]) not in protein_coordinates):
 					protein_coordinates.remove(tuple(self.coordinates))
@@ -141,7 +144,7 @@ class Residue:
 					protein_coordinates.add(tuple(self.coordinates))
 					protein_coordinates.add(tuple(neighbour_list[self.number + 1].coordinates))
 			# Left forward move.
-			else:
+			elif self.coordinates[1] > neighbour_list[self.number - 1].coordinates[1]:
 				if (tuple([self.coordinates[0], self.coordinates[1] - 2]) not in protein_coordinates and 
 					tuple([neighbour_list[self.number + 1].coordinates[0], neighbour_list[self.number + 1].coordinates[1] - 2]) not in protein_coordinates):
 					protein_coordinates.remove(tuple(self.coordinates))
@@ -162,7 +165,7 @@ class Residue:
 					neighbour_list[self.number - 1].coordinates = [neighbour_list[self.number - 1].coordinates[0], neighbour_list[self.number - 1].coordinates[1] + 2]
 					protein_coordinates.add(tuple(self.coordinates))
 					protein_coordinates.add(tuple(neighbour_list[self.number - 1].coordinates))
-			else:
+			elif self.coordinates[0] > neighbour_list[self.number - 1].coordinates[1]:
 				if (tuple([self.coordinates[0], self.coordinates[1] - 2]) not in protein_coordinates and 
 					tuple([neighbour_list[self.number - 1].coordinates[0], neighbour_list[self.number - 1].coordinates[1] - 2]) not in protein_coordinates):
 					protein_coordinates.remove(tuple(self.coordinates))

@@ -1,7 +1,8 @@
 import random as rd
 import copy
+import math
 
-def MCsearch(step, conformation, protein_coordinates):
+def MCsearch(step, conformation, protein_coordinates, crankshaft, TEMPERATURE):
 	for n, i in enumerate(range(step)):		
 		if n == 0:
 			for aa in conformation:
@@ -16,12 +17,26 @@ def MCsearch(step, conformation, protein_coordinates):
 		elif current_res == conformation[-1]:
 			current_res.end_move(conformation[-2], protein_coordinates)
 		else:
-			if current_res.number < 3 or current_res.number > len(conformation) - 4:
-				current_res.corner_move(conformation[current_res.number - 1], conformation[current_res.number + 1], protein_coordinates)
+			if crankshaft == True:
+				if current_res.number < 3 or current_res.number > len(conformation) - 4:
+					current_res.corner_move(conformation[current_res.number - 1], conformation[current_res.number + 1], protein_coordinates)
+				else:
+					rd.choice([current_res.corner_move(conformation[current_res.number - 1], conformation[current_res.number + 1], protein_coordinates),
+						current_res.crankshaft_move(conformation, protein_coordinates)])
 			else:
-				rd.choice([current_res.corner_move(conformation[current_res.number - 1], conformation[current_res.number + 1], protein_coordinates),
-					current_res.crankshaft_move(conformation, protein_coordinates)])
+				current_res.corner_move(conformation[current_res.number - 1], conformation[current_res.number + 1], protein_coordinates)
+		for position, resi in enumerate(conformation[:-1]):
+			if abs(resi.coordinates[0] - conformation[position].coordinates[0]) > 1 and abs(resi.coordinates[1] - conformation[position].coordinates[1]) > 1:
+				conformation_error = True
+			else:
+				conformation_error = False
+		if conformation_error == True:
+			conformation = previous_conformation
+			protein_coordinates = previous_coordinates
+			continue
 		if previous_conformation == conformation:
+			conformation = previous_conformation
+			protein_coordinates = previous_coordinates
 			continue
 		else:
 			if calcul_energy(conformation) <= energy:
@@ -29,8 +44,13 @@ def MCsearch(step, conformation, protein_coordinates):
 				energy = calcul_energy(conformation)
 				print(energy)
 			else:
-				conformation = previous_conformation
-				protein_coordinates = previous_coordinates
+				new_energy = calcul_energy(conformation)
+				prob = rd.uniform(0,1)
+				if prob > math.exp(-(new_energy - energy)/TEMPERATURE):
+					energy = new_energy
+				else:
+					conformation = previous_conformation
+					protein_coordinates = previous_coordinates
 		for aa in conformation:
 			print(aa.coordinates)
 		print("\n")

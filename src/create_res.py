@@ -62,7 +62,7 @@ if __name__ == "__main__":
 	stp = args.steps
 	output_pdb = args.output_pdb
 	"""	
-	seq, coordinates = get_seq("../data/HP3.txt")
+	seq, coordinates = get_seq("../data/HP1.txt")
 	
 	# creating list		   
 	protein = []
@@ -80,7 +80,9 @@ if __name__ == "__main__":
 		print(res.coordinates)
 	print("\n")
 	"""
-	MC.MCsearch(10000, protein, protein_coordinates)
+	TEMPERATURE = 300
+	crankshaft = False
+	MC.MCsearch(10000, protein, protein_coordinates, crankshaft, TEMPERATURE)
 	"""
 	for res in protein:
 		print(res.coordinates)
