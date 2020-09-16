@@ -30,7 +30,9 @@ def pdb_writer(protein, model_number):
              num_atom= num_atom+1
              num_res=num_res+1
              
-    with open("sortie.pdb",'a+') as f:  
+    with open("sortie.pdb",'a+') as f:
         f.write("\n")
-        f.write("ENDMDL") 
+        f.write("TER")
+        f.write("\n")
+        f.write("ENDMDL")
         f.write("\n")  
