@@ -6,7 +6,9 @@ Julien PICHON : julien.pichon@cri-paris.org
 
 Opale RAMBAUD : opale.rambaud@gmail.fr
 
-In a context of scholar project for Université de Paris 
+In a context of scholar project for Université de Paris.
+
+*Do not hesitate to contact us for further information* 
 
 ## Objective
 
