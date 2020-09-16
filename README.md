@@ -33,8 +33,10 @@ Pymol 2.3.5
 ## Directories :
 
 
-The data directory contains examples of sequenceHP in txt format 
+The data directory contains examples of HP sequences in txt format (3from the article and 2 building by us)
+
 The src directory contains all the source codes 
+
 The docs directory contains the project report in pdf format
 
 ## Program :
