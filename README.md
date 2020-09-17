@@ -54,7 +54,7 @@ Please clone the entire github bdefore using scripts.
 
 To run the program the following command must be executed: 
 
-python create_res.py --input_file --steps --output_pdb
+python protein_folding.py --input_file --steps --output_pdb
 
 with the following arguments:
 
@@ -68,7 +68,7 @@ with the following arguments:
 
 So, one example of this command is : 
 
-`python create_res -i HP1.txt -n 1000 -o my_model.pdb `
+`python protein_folding.py -i HP1.txt -n 1000 -o my_model.pdb `
 
 The ouput is a pdb with a model for every folding. 
 
